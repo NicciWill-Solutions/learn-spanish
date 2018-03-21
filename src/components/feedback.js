@@ -9,10 +9,7 @@ export function Feedback(props){
       return null;
     }
     else {
-      let isCorrect = false;
-      
       if(props.correctAnswer.toLowerCase().trim() === props.userAnswer.toLowerCase().trim()){
-        isCorrect = true;
         return(
           <div className="feedback">
             <h2 className="feedback-correct"><i className="fas fa-trophy"></i> Yes, that's correct!</h2>

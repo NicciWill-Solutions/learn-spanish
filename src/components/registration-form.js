@@ -1,11 +1,11 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
-import Input from './input';
 import {required, nonEmpty, matches, length, isTrimmed} from '../validators';
 import './registration-form.css';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Input from './input';
 
 const passwordLength = length({min: 10, max: 72});
 const matchesPassword = matches('password');
@@ -33,31 +33,36 @@ export class RegistrationForm extends React.Component {
                     <Field component={Input} type="text" name="lastName" /> */}
                     {/* <label htmlFor="username">Username | Usuario</label> */}
                     <Field
-                        placeholder="Username | Usuario"
-                        component="input"
+                        label="Username | Usuario"
+                        component={Input}
                         type="text"
                         name="username"
                         validate={[required, nonEmpty, isTrimmed]}
                     />
                     {/* <label htmlFor="password">Password | Contraseña</label> */}
                     <Field
-                        placeholder="Password | Contraseña"
-                        component="Input"
+                        label="Password | Contraseña"
+                        component={Input}
                         type="password"
                         name="password"
                         validate={[required, passwordLength, isTrimmed]}
                     />
                     {/* <label htmlFor="passwordConfirm">Confirm password | Confirmar contraseña</label> */}
                     <Field
-                        component="Input"
-                        placeholder="Confirm password | Confirmar"
+                        component={Input}
+                        label="Confirm password | Confirmar"
                         type="password"
                         name="passwordConfirm"
                         validate={[required, nonEmpty, matchesPassword]}
                     />
+
                     <button className="register-button"
                         type="submit"
-                        disabled={this.props.pristine || this.props.submitting}>
+                        disabled={
+                            this.props.pristine ||
+                            this.props.submitting
+                        }
+                        >
                         Register | Registro
                     </button>
                 </form>
@@ -68,7 +73,7 @@ export class RegistrationForm extends React.Component {
 }
 
 export default reduxForm({
-    form: 'registration',
-    onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('registration', Object.keys(errors)[0]))
+    form: 'registration'
+    // onSubmitFail: (errors, dispatch) =>
+    //     dispatch(focus('registration', Object.keys(errors)[0]))
 })(RegistrationForm);

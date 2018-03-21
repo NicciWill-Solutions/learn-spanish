@@ -23,7 +23,7 @@ export class Dashboard extends React.Component {
         const chartData = data.map(item => {
             if(item.attempts === 0) {
                 return {
-                    value: 0/data.length, 
+                    value: 0,
                     label: item.word   
                 }
             }
@@ -38,8 +38,8 @@ export class Dashboard extends React.Component {
     }
 
     render() {
-        //{console.log(this.props)};
-        //{console.log(this.getChartData(this.props.protectedData))};
+        // {console.log(this.props)};
+        // {console.log(this.getChartData(this.props.protectedData))};
         return (
             <div className="dashboard">
                 <h3 className="dashboard-username">
@@ -67,10 +67,6 @@ export class Dashboard extends React.Component {
                         ]
                     }
                 />
-                {/* <div className="dashboard-name">Name: {this.props.name}</div>
-                <div className="dashboard-protected-data">
-                    Protected data: {this.props.protectedData}
-                </div> */}
                 <div className="board-link">
                     <Link to="/board">Get Started!</Link>
                 </div>

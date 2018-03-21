@@ -1,11 +1,13 @@
 .registration-container {
     background-color: #2f3640;
-    width: 25%;
-    height: 15em;
+    max-width: 300px;
+    min-width: 300px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
     color: #f5f6fa;
     border-radius: 5px;
+    padding: 20px 0;
 }
 
 a:-webkit-any-link {
@@ -13,17 +15,13 @@ a:-webkit-any-link {
     color: #f5f6fa;
     text-decoration: none;
 }
-/* 
-label {
-    margin-top: 10px;
-} */
 
 input {
     border-radius: 5px;
     border: 0px;
     background-color: #f5f6fa;
     height: 30px;
-    margin-top: 15px;
+    margin-bottom: 20px;
     width: 75%;
     color: #2f3640;
 }
@@ -39,4 +37,8 @@ input {
     font-size: 1em;
     font-weight: 700;
     margin-bottom: 20px;
+}
+
+#username, #password, #passwordConfirm {
+    margin-top: 0;
 }
