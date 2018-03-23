@@ -50,6 +50,14 @@ export class LoginForm extends React.Component {
                     </button>
                 </form>
                 <Link to="/register">Register | Registro</Link>
+                <hr/>
+                <div>
+                    Please click 'Register' above to<br/> create an account or login using:<br/>
+                    <p className="demo">
+                        Username: demo<br/>
+                        Password: demoaccount
+                    </p>
+                </div>
             </div>
         );
     }
