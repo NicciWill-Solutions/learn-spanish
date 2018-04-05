@@ -4,7 +4,7 @@ This app was built to help users learn basic Spanish words and phrases. The app 
 
 ![GitHub Logo](https://nicciwill.com/nicci/spanish-app.png)
 
-##Tech Stack
+## Tech Stack
 * Node.js
 * Express.js
 * MongoDB
@@ -14,4 +14,4 @@ This app was built to help users learn basic Spanish words and phrases. The app 
 
 ## Live Demo
 The app is fun and easy to use, so what are you waiting on? Vamos!!
-https://wizardly-cori-347df7.netlify.com/
+https://suspicious-kirch-6071cb.netlify.com/
