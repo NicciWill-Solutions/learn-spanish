@@ -1,8 +1,9 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {login} from '../actions/auth';
-import {required, nonEmpty} from '../validators';
+import {required, nonEmpty, isTrimmed} from '../validators';
 import {Link} from 'react-router-dom';
+import Input from './input';
 import './login-form.css';
 
 export class LoginForm extends React.Component {
@@ -11,45 +12,51 @@ export class LoginForm extends React.Component {
     }
 
     render() {
-        let error;
-        if (this.props.error) {
-            error = (
-                <div className="form-error" aria-live="polite">
-                    {this.props.error}
-                </div>
-            );
-        }
+        const error = this.props.error ? (
+            <div className="form-error">
+                {this.props.error}
+            </div>
+        ) : (
+            <div className="form-error"></div>
+        );
+
         return (
             <div className="login-container">
+                {error}
+
                 <form
                     className="login-form"
                     onSubmit={this.props.handleSubmit(values =>
                         this.onSubmit(values)
                     )}>
-                    {/* {error} */}
-                    {/* <label htmlFor="username">Username | Usuario</label> */}
+
                     <Field
-                        placeholder="Username | Usuario"
-                        component="input"
+                        label="Username | Usuario"
+                        component={Input}
                         type="text"
                         name="username"
                         id="username"
-                        validate={[required, nonEmpty]}
+                        validate={[required, nonEmpty, isTrimmed]}
                     />
-                    {/* <label htmlFor="password">Password | Contraseña</label> */}
+
                     <Field
-                        placeholder="Password | Contraseña"
-                        component="input"
+                        label="Password | Contraseña"
+                        component={Input}
                         type="password"
                         name="password"
                         id="password"
-                        validate={[required, nonEmpty]}
+                        validate={[required, nonEmpty, isTrimmed]}
                     />
-                    <button className="login-button" disabled={this.props.pristine || this.props.submitting}>
+
+                    <button 
+                        className="login-button" 
+                        disabled={this.props.pristine || this.props.submitting}>
                     <i className="fas fa-key"></i> Log in | Iniciar sesión
                     </button>
                 </form>
+                
                 <Link to="/register">Register | Registro</Link>
+                
                 <hr/>
                 <div>
                     Please click 'Register' above to<br/> create an account or login using:<br/>
@@ -65,5 +72,6 @@ export class LoginForm extends React.Component {
 
 export default reduxForm({
     form: 'login',
-    onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
+    onSubmitFail: (errors, dispatch) => 
+        dispatch(focus('login', Object.keys(errors)[0]))
 })(LoginForm);
