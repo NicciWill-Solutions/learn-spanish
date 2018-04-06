@@ -6,13 +6,6 @@ export const addResponseRequest = () => ({
     loading: true
 });
 
-export const ADD_RESPONSE_SUCCESS = 'ADD_RESPONSE_SUCCESS';
-export const addResponseSuccess = (id, response) => ({
-    type: ADD_RESPONSE_SUCCESS,
-    id,
-    response
-});
-
 export const ADD_RESPONSE_ERROR = 'ADD_RESPONSE_ERROR';
 export const addResponseError = (err) => ({
     type: ADD_RESPONSE_ERROR,
@@ -29,10 +22,9 @@ export const updateNewResponse = (userResponse) => ({
 })
 
 export const INCREMENT_SCORE = 'INCREMENT_SCORE';
-export const incrementScore = (numCorrect, totalQuest) => ({
+export const incrementScore = (numCorrect) => ({
     type: INCREMENT_SCORE,
-    numCorrect: numCorrect + 1,
-    totalQuest: totalQuest + 1
+    numCorrect: numCorrect + 1
 })
 
 export const INCREMENT_TOTAL = 'INCREMENT_TOTAL';
@@ -53,7 +45,7 @@ export const addResponse = (response) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     const uid = getState().auth.currentUser.id;
     const question = getState().question.currWord.question;
-    //double check endpoint when backend is complete
+   
     return fetch(`${API_BASE_URL}/responses`, {
         headers: { 'Authorization': `Bearer ${authToken}`, 'Accept': 'application/json', 'Content-Type': 'application/json' },
         method: `POST`,
@@ -69,9 +61,6 @@ export const addResponse = (response) => (dispatch, getState) => {
         }
         return res.json();
     })
-    .then(data => {
-        console.log('here');
-    })
     .catch(err=> {
         dispatch(addResponseError(err))
         })
@@ -84,7 +73,5 @@ export const updateProgress = (response) => (dispatch, getState) => {
     if ( response === corrAnswer) {
         dispatch(incrementScore(numCorrect, totalQuest));
     }
-    else {
-        dispatch(incrementTotal(totalQuest));
-    }
+    dispatch(incrementTotal(totalQuest));
 }

@@ -1,6 +1,5 @@
 import {
     ADD_RESPONSE_REQUEST,
-    ADD_RESPONSE_SUCCESS,
     ADD_RESPONSE_ERROR,
     UPDATE_NEW_RESPONSE,
     INCREMENT_SCORE,
@@ -32,11 +31,6 @@ export default function responseReducer(state = initialState, action){
         loading: action.loading,
         error: action.error,
         view: action.view
-        })
-    }
-    else if(action.type === ADD_RESPONSE_SUCCESS) {
-        return Object.assign({}, state, {
-            response: action.response,
         })
     }
     else if(action.type === ADD_RESPONSE_ERROR) {

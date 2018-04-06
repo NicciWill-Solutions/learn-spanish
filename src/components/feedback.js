@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import './feedback.css';
 
 export function Feedback(props){
-    //{console.log(props)}
     if(props.view !== 'feedback'){
       return null;
     }
