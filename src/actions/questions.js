@@ -42,32 +42,7 @@ export const fetchQuestions = () => (dispatch, getState) => {
     return res.json();
   })
   .then( currWord => {
-    //console.log('currWord',currWord);
     dispatch(fetchQuestionSuccess(currWord));
-  })
-  .catch(err => {
-    dispatch(fetchQuestionError(err))
-  })
-}
-
-export const fetchNextQuestion = () => (dispatch, getState) => {
-  const authToken = getState().auth.authToken;
-  dispatch(fetchQuestionRequest());
-  fetch(`${API_BASE_URL}/next`, {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-      Accept: 'application/json'
-    }
-  })
-  .then( res => {
-    if(!res.ok) {
-      console.log('There was an issue with the request');
-    }
-    return res.json();
-  })
-  .then( nextWord => {
-    //console.log('nextWord',nextWord);
-    dispatch(fetchQuestionSuccess(nextWord));
   })
   .catch(err => {
     dispatch(fetchQuestionError(err))

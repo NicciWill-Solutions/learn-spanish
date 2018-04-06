@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import Questions from './questions';
 import AnswerForm from './answer-form';
 import Feedback from './feedback';
 import Progress from './progress';
+
 import './board.css';
-import {connect} from 'react-redux';
 
 export function Board(props){
   if (!props.loggedIn) {

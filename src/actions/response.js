@@ -2,7 +2,8 @@ import {API_BASE_URL} from '../config';
 
 export const ADD_RESPONSE_REQUEST = 'ADD_RESPONSE_REQUEST';
 export const addResponseRequest = () => ({
-    type: ADD_RESPONSE_REQUEST
+    type: ADD_RESPONSE_REQUEST,
+    loading: true
 });
 
 export const ADD_RESPONSE_SUCCESS = 'ADD_RESPONSE_SUCCESS';
@@ -13,8 +14,9 @@ export const addResponseSuccess = (id, response) => ({
 });
 
 export const ADD_RESPONSE_ERROR = 'ADD_RESPONSE_ERROR';
-export const addResponseError = () => ({
-    type: ADD_RESPONSE_ERROR
+export const addResponseError = (err) => ({
+    type: ADD_RESPONSE_ERROR,
+    error: err
 })
 
 export const UPDATE_NEW_RESPONSE = 'UPDATE_NEW_RESPONSE';

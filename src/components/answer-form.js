@@ -1,9 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 import {addResponse} from '../actions/response';
-import {fetchNextQuestion} from '../actions/questions';
 import {updateProgress} from '../actions/response';
 import {updateView} from '../actions/response';
+import {fetchQuestions} from '../actions/questions';
+
 import './answer-form.css';
 
 export class AnswerForm extends React.Component {
@@ -36,12 +38,11 @@ export class AnswerForm extends React.Component {
 
     getNext(event) {
         event.preventDefault();
-        this.props.dispatch(fetchNextQuestion());
+        this.props.dispatch(fetchQuestions());
         this.props.dispatch(updateView());
         document.getElementById('textInput').value = '';
     }
 
-    //add form render and logic to handle the input / submission
     render() {
         let button = null;
         if(this.props.view === '') {
@@ -63,7 +64,6 @@ export class AnswerForm extends React.Component {
                     id="textInput"
                     className="textArea"
                     required
-                    ref={(input) => {this.textInput = input}}
                     >
                     </textarea>
                 </div>
@@ -77,9 +77,7 @@ export class AnswerForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-    //console.log(state);
     return {
-        id: state.question.currWord._id,
         view: state.response.view
     }
 }
